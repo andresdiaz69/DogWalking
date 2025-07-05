@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\3. ECI.Data\ECI.DataContracts\ECI.DataContracts.csproj" />
+    <ProjectReference Include="..\..\3. ECI.Data\ECI.Data\ECI.DataRepository.csproj" />
+    <ProjectReference Include="..\..\4. ECI.Entities\ECI.Entities\ECI.Entities.csproj" />
+    <ProjectReference Include="..\ECI.BusinessContracts\ECI.BusinessContracts.csproj" />
+  </ItemGroup>
+
+</Project>
