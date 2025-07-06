@@ -59,6 +59,7 @@
             // 
             // dgDogs
             // 
+            dgDogs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgDogs.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgDogs.Location = new Point(15, 43);
             dgDogs.Name = "dgDogs";

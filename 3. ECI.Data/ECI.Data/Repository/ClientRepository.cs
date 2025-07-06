@@ -15,7 +15,14 @@
         {
             _context = context;
         }
-    
+
+
+
+        /// <summary>
+        /// Gets all c lients.
+        /// </summary>
+        /// <param name="onlyActiveClients">if set to <c>true</c> [only active clients].</param>
+        /// <returns></returns>
         public List<Client> GetAllCLients(bool onlyActiveClients)
         {
             return _context.Clients
@@ -24,7 +31,12 @@
                 .ToList();
         }
 
-        public  Client GetClient(long clientId)
+        /// <summary>
+        /// Gets the client.
+        /// </summary>
+        /// <param name="clientId">The client identifier.</param>
+        /// <returns>Client found</returns>
+        public Client GetClient(long clientId)
         {
             return  _context.Clients
                 .Where(c => c.Id == clientId)
@@ -32,13 +44,24 @@
                 .FirstOrDefault();
         }
 
+        /// <summary>
+        /// Saves the client.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        /// <returns>True = client saved ok</returns>
         public bool SaveClient(Client client)
         {
             _context.Clients.Add(client);
             _context.SaveChanges();
+            _context.Entry(client).State = EntityState.Detached;
             return true;
         }
 
+        /// <summary>
+        /// Updates the client.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        /// <returns>True = client updated ok</returns>
         public bool UpdateClient(Client client)
         {
             _context.Attach(client);

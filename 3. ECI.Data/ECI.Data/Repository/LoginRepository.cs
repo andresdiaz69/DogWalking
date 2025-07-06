@@ -15,6 +15,11 @@
             _context = context;
         }
 
+        /// <summary>
+        /// Validates the user.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <returns>User authenticated</returns>
         public User ValidateUser(LoginDTO login)
         {
             var userValid = _context.Users.Where(

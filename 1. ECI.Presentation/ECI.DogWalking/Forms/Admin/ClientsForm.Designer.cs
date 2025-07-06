@@ -104,6 +104,7 @@
             // 
             // dgClients
             // 
+            dgClients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgClients.Location = new Point(13, 113);
             dgClients.Name = "dgClients";
@@ -245,6 +246,7 @@
             MaximizeBox = false;
             Name = "ClientsForm";
             Text = "ClientsForm";
+            Activated += ClientsForm_Load;
             Load += ClientsForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

@@ -29,6 +29,7 @@
         #region "Events"   
         private void WalksForm_Load(object sender, EventArgs e)
         {
+            ClearSearchData();
             GetAllWalks();
             GetClients();
             FillFilters();
@@ -61,15 +62,21 @@
                 try
                 {
                     var walk = GetWalkData();
+                    bool result = false;
 
                     if (walkId == 0)
-                        _walkService.SaveWalk(walk);
+                        result = _walkService.SaveWalk(walk);
                     else
-                        _walkService.UpdateWalk(walk);
+                        result = _walkService.UpdateWalk(walk);
 
-                    ClearWalkForm();
-                    GetAllWalks();
-                    MessageBox.Show(MsgGeneral.MsgWalkSaved);
+                    if (result)
+                    {
+                        ClearWalkForm();
+                        GetAllWalks();
+                        MessageBox.Show(MsgGeneral.MsgWalkSaved);
+                    }
+                    else
+                        MessageBox.Show(MsgGeneral.MsgGeneralError);
 
                 }
                 catch (Exception)
@@ -92,10 +99,22 @@
                 SetWalkInfo(walkId);
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show(MsgGeneral.MsgConfirmWalkDelete,
+                                     "Confirm Delete",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+                DeleteWalk();
+        }
         #endregion
 
 
-        #region "Methods"   
+        #region "Methods"           
+        /// <summary>
+        /// Gets all walks.
+        /// </summary>
         private void GetAllWalks()
         {
             try
@@ -106,10 +125,10 @@
                 {
                     listWalks = listWalks.Where(w =>
                     (cbFilters.SelectedIndex == 1
-                    && w.Dog.Client.Name.Contains(txtSearch.Text)) ||
+                    && w.Dog.Client.Name.ToUpper().Contains(txtSearch.Text.ToUpper())) ||
 
                     (cbFilters.SelectedIndex == 2
-                    && w.Dog.Name.Contains(txtSearch.Text))
+                    && w.Dog.Name.ToUpper().Contains(txtSearch.Text.ToUpper()))
                     ).ToList();
                 }
 
@@ -125,6 +144,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets the clients.
+        /// </summary>
         private void GetClients()
         {
             try
@@ -140,6 +162,9 @@
             }
         }
 
+        /// <summary>
+        /// Fills the filters for search.
+        /// </summary>
         private void FillFilters()
         {
             cbFilters.Items.Clear();
@@ -149,6 +174,9 @@
             cbFilters.Items.Insert(2, "Dog Name");
         }
 
+        /// <summary>
+        /// Clears the walk form.
+        /// </summary>
         private void ClearWalkForm()
         {
             walkId = 0;
@@ -158,8 +186,14 @@
             cbClient.SelectedIndex = -1;
             cbDog.DataSource = null;
             cbDog.Items.Clear();
+            btnAdd.Text = "Add new";
+            btnDelete.Enabled = false;
         }
 
+        /// <summary>
+        /// Gets the dogs by client.
+        /// </summary>
+        /// <param name="clientId">The client identifier.</param>
         private void GetDogsByClient(long clientId)
         {
             try
@@ -175,6 +209,10 @@
             }
         }
 
+        /// <summary>
+        /// Sets the walk information.
+        /// </summary>
+        /// <param name="walkId">The walk identifier.</param>
         private void SetWalkInfo(long walkId)
         {
             try
@@ -188,7 +226,11 @@
                     cbClient.SelectedValue = walkInfo.Dog.Client.Id;
                     cbClients_SelectedIndexChanged(null, null);
                     cbDog.SelectedValue = walkInfo.DogId;
+                    btnAdd.Text = "Update";
+                    btnDelete.Enabled = true;
                 }
+                else
+                    MessageBox.Show(MsgGeneral.MsgGeneralError);
 
             }
             catch (Exception)
@@ -197,6 +239,10 @@
             }
         }
 
+        /// <summary>
+        /// Gets the walk data.
+        /// </summary>
+        /// <returns>Objet Walk to store in DB</returns>
         private Walk GetWalkData()
         {
             return new Walk()
@@ -208,6 +254,10 @@
             };
         }
 
+        /// <summary>
+        /// Validates the fields.
+        /// </summary>        
+        /// <returns>True= all info in the form is OK.</returns>
         private bool ValidateFields()
         {
             bool formIsValid = true;
@@ -227,7 +277,37 @@
 
             return formIsValid;
         }
-        #endregion
 
+        /// <summary>
+        /// Deletes the walk.
+        /// </summary>
+        private void DeleteWalk()
+        {
+            try
+            {
+                if (_walkService.DeleteWalk(walkId))
+                {
+                    GetAllWalks();
+                    ClearWalkForm();
+                    MessageBox.Show(MsgGeneral.MsgWalkDeleted);
+                }
+                else
+                    MessageBox.Show(MsgGeneral.MsgGeneralError);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(MsgGeneral.MsgGeneralError);
+            }
+        }
+
+        /// <summary>
+        /// Clears the search data.
+        /// </summary>
+        private void ClearSearchData()
+        {
+            cbFilters.SelectedIndex = -1;
+            txtSearch.Text = string.Empty;
+        }
+        #endregion
     }
 }

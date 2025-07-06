@@ -23,20 +23,29 @@
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configuraciones opcionales
             modelBuilder.Entity<User>().HasData(
-                new User { Id = 1, Name = "Admin", LastName="Admin", 
-                    Email="admin@eci.com" , Password= "21232f297a57a5a743894a0e4a801fc3"
+                new User
+                {
+                    Id = 1,
+                    Name = "Admin",
+                    LastName = "Admin",
+                    Email = "admin@eci.com",
+                    Password = "21232f297a57a5a743894a0e4a801fc3"
                 }
             );
-        }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=MIPCHP;Database=ECI_DogWalks;Trusted_Connection=True;TrustServerCertificate=True;");
-            }
+            modelBuilder.Entity<Breed>().HasData(
+                new Breed { Id = 1, Name = "Doberman", isActive = true },
+                new Breed { Id = 2, Name = "French Puddle", isActive = true },
+                new Breed { Id = 3, Name = "Boxer", isActive = true });
+
         }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        optionsBuilder.UseSqlServer("Server=MIPCHP;Database=ECI_DogWalks;Trusted_Connection=True;TrustServerCertificate=True;");
+        //    }
+        //}
     }
 }

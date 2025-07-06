@@ -70,6 +70,15 @@ namespace ECI.Common.Core.MessagesApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure to delete this item?.
+        /// </summary>
+        public static string MsgConfirmWalkDelete {
+            get {
+                return ResourceManager.GetString("MsgConfirmWalkDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dog saved Ok..
         /// </summary>
         public static string MsgDogSaved {
@@ -84,6 +93,15 @@ namespace ECI.Common.Core.MessagesApp {
         public static string MsgGeneralError {
             get {
                 return ResourceManager.GetString("MsgGeneralError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Walk deleted Ok..
+        /// </summary>
+        public static string MsgWalkDeleted {
+            get {
+                return ResourceManager.GetString("MsgWalkDeleted", resourceCulture);
             }
         }
         

@@ -5,6 +5,10 @@
 
     public interface IBreedRepository
     {
+        /// <summary>
+        /// Gets all breeds.
+        /// </summary>
+        /// <returns>List of breeds</returns>
         List<Breed> GetAllBreeds();
     }
 }

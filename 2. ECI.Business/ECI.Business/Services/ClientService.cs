@@ -15,6 +15,11 @@
             _clientRepository = clientRepository;
         }
 
+        /// <summary>
+        /// Gets all c lients.
+        /// </summary>
+        /// <param name="onlyActiveClients">if set to <c>true</c> [only active clients].</param>
+        /// <returns></returns>
         public List<Client> GetAllCLients(bool onlyActiveClients)
         {
             try
@@ -28,6 +33,11 @@
             }
         }
 
+        /// <summary>
+        /// Gets the client.
+        /// </summary>
+        /// <param name="clientId">The client identifier.</param>
+        /// <returns>Client found</returns>
         public Client GetClient(long clientId)
         {
             try
@@ -41,6 +51,11 @@
             }
         }
 
+        /// <summary>
+        /// Saves the client.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        /// <returns>True = client saved ok</returns>
         public bool SaveClient(Client client)
         {
             try
@@ -54,10 +69,18 @@
             }
         }
 
+        /// <summary>
+        /// Updates the client.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        /// <returns>True = client updated ok</returns>
         public bool UpdateClient(Client client)
         {
             try
             {
+                var clientUpdate = GetClient(client.Id);
+                if (clientUpdate == null) return false;
+
                 return _clientRepository.UpdateClient(client);
             }
             catch (Exception ex)

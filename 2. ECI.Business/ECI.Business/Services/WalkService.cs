@@ -16,11 +16,19 @@
             _walkRepository = walkRepository;
         }
 
+        /// <summary>
+        /// Deletes the walk.
+        /// </summary>
+        /// <param name="walkId">The walk identifier.</param>
+        /// <returns>True = walk deleted ok</returns>
         public bool DeleteWalk(long walkId)
         {
             try
             {
-                var walk = GetWalk(walkId);
+                var walk = _walkRepository.GetWalkToUpdate(walkId);
+
+                if (walk == null) return false;
+
                 return _walkRepository.DeleteWalk(walk);
             }
             catch (Exception ex)
@@ -30,6 +38,10 @@
             }
         }
 
+        /// <summary>
+        /// Gets all walks.
+        /// </summary>
+        /// <returns></returns>
         public List<Walk> GetAllWalks()
         {
             try
@@ -43,6 +55,11 @@
             }
         }
 
+        /// <summary>
+        /// Gets the walk.
+        /// </summary>
+        /// <param name="walkId">The walk identifier.</param>
+        /// <returns>Walk found</returns>
         public Walk GetWalk(long walkId)
         {
             try
@@ -56,6 +73,11 @@
             }
         }
 
+        /// <summary>
+        /// Saves the walk.
+        /// </summary>
+        /// <param name="walk">The walk.</param>
+        /// <returns>True = walk saved ok</returns>
         public bool SaveWalk(Walk walk)
         {
             try
@@ -69,10 +91,18 @@
             }
         }
 
+        /// <summary>
+        /// Updates the walk.
+        /// </summary>
+        /// <param name="walk">The walk.</param>
+        /// <returns>True = walk updated ok</returns>
         public bool UpdateWalk(Walk walk)
         {
             try
             {
+                var walktoUpdate = _walkRepository.GetWalkToUpdate(walk.Id);
+                if (walktoUpdate == null) return false;
+
                 return _walkRepository.UpdateWalk(walk);
             }
             catch (Exception ex)

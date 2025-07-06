@@ -23,11 +23,10 @@
             InitializeComponent();
         }
 
-        protected ClientsForm() : base() { }
-
         #region "Events"       
         private void ClientsForm_Load(object sender, EventArgs e)
         {
+            ClearSearchData();
             GetAllClients();
             FillFilters();
             ClearClientForm();
@@ -75,15 +74,21 @@
                 try
                 {
                     var client = GetClientData();
+                    bool result = false;
 
                     if (clientId == 0)
-                        _clientService.SaveClient(client);
+                        result = _clientService.SaveClient(client);
                     else
-                        _clientService.UpdateClient(client);
+                        result = _clientService.UpdateClient(client);
 
-                    ClearClientForm();
-                    GetAllClients();
-                    MessageBox.Show(MsgGeneral.MsgClientSaved);
+                    if (result)
+                    {
+                        ClearClientForm();
+                        GetAllClients();
+                        MessageBox.Show(MsgGeneral.MsgClientSaved);
+                    }
+                    else
+                        MessageBox.Show(MsgGeneral.MsgGeneralError);
                 }
                 catch (Exception)
                 {
@@ -93,7 +98,10 @@
         }
         #endregion
 
-        #region "Methods"
+        #region "Methods"        
+        /// <summary>
+        /// Gets all clients.
+        /// </summary>
         private void GetAllClients()
         {
             try
@@ -103,8 +111,8 @@
                 if (cbFilters.SelectedIndex > 0)
                 {
                     listClients = listClients.Where(c =>
-                    (cbFilters.SelectedIndex == 1 && c.Name.Contains(txtSearch.Text)) ||
-                    (cbFilters.SelectedIndex == 2 && c.LastName.Contains(txtSearch.Text))
+                    (cbFilters.SelectedIndex == 1 && c.Name.ToUpper().Contains(txtSearch.Text.ToUpper())) ||
+                    (cbFilters.SelectedIndex == 2 && c.LastName.ToUpper().Contains(txtSearch.Text.ToUpper()))
                     ).ToList();
                 }
 
@@ -119,6 +127,9 @@
             }
         }
 
+        /// <summary>
+        /// Fills the filters for search.
+        /// </summary>
         private void FillFilters()
         {
             cbFilters.Items.Clear();
@@ -128,6 +139,9 @@
             cbFilters.Items.Insert(2, "Last Name");
         }
 
+        /// <summary>
+        /// Clears the client form.
+        /// </summary>
         private void ClearClientForm()
         {
             txtName.Text = string.Empty;
@@ -141,6 +155,10 @@
             errorsClient.Clear();
         }
 
+        /// <summary>
+        /// Sets the client information in the form.
+        /// </summary>
+        /// <param name="clientId">The client identifier.</param>
         private void SetClientInfo(long clientId)
         {
             try
@@ -156,7 +174,8 @@
                     chActive.Enabled = true;
                     btnAddDogs.Enabled = true;
                     btnAdd.Text = "Update";
-                }
+                } else
+                    MessageBox.Show(MsgGeneral.MsgGeneralError);
             }
             catch (Exception)
             {
@@ -164,6 +183,10 @@
             }
         }
 
+        /// <summary>
+        /// Validates the fields in the form.
+        /// </summary>
+        /// <returns>True= all info in the form is OK.</returns>
         private bool ValidateFields()
         {
             bool formIsValid = true;
@@ -196,6 +219,10 @@
             return formIsValid;
         }
 
+        /// <summary>
+        /// Gets the client data in the form.
+        /// </summary>
+        /// <returns>Objet Client to store in DB</returns>
         private Client GetClientData()
         {
             return new Client()
@@ -206,6 +233,15 @@
                 PhoneNumber = int.Parse(txtPhone.Text),
                 isActive = chActive.Checked
             };
+        }
+
+        /// <summary>
+        /// Clears the search data.
+        /// </summary>
+        private void ClearSearchData()
+        {
+            cbFilters.SelectedIndex = -1;
+            txtSearch.Text = string.Empty;
         }
         #endregion
     }

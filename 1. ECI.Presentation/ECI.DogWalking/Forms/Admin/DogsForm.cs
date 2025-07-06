@@ -2,7 +2,6 @@
 {
     using ECI.BusinessContracts.IServices;
     using ECI.Common.Core.MessagesApp;
-    using ECI.DataContracts.IRepository;
     using ECI.Entities.Entities;
     using System;
     using System.Windows.Forms;
@@ -42,11 +41,14 @@
                 {
                     var dog = GetDogData();
 
-                    _dogService.SaveDog(dog);
-
-                    ClearDogsForm();
-                    GetDogsByClient(clientId);
-                    MessageBox.Show(MsgGeneral.MsgDogSaved);
+                    if (_dogService.SaveDog(dog))
+                    {
+                        ClearDogsForm();
+                        GetDogsByClient(clientId);
+                        MessageBox.Show(MsgGeneral.MsgDogSaved);
+                    }
+                    else
+                        MessageBox.Show(MsgGeneral.MsgGeneralError);
                 }
                 catch (Exception)
                 {
@@ -56,7 +58,11 @@
         }
         #endregion
 
-        #region "Methods"
+        #region "Methods"        
+        /// <summary>
+        /// Gets the dogs by client.
+        /// </summary>
+        /// <param name="clientId">The client identifier.</param>
         public void GetDogsByClient(long clientId)
         {
             try
@@ -79,6 +85,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets the breeds.
+        /// </summary>
         private void GetBreeds()
         {
             try
@@ -95,6 +104,9 @@
             }
         }
 
+        /// <summary>
+        /// Clears the dogs form.
+        /// </summary>
         private void ClearDogsForm()
         {
             txtName.Text = string.Empty;
@@ -103,6 +115,10 @@
             errorsDogs.Clear();
         }
 
+        /// <summary>
+        /// Validates the fields.
+        /// </summary>
+        /// <returns>True= all info in the form is OK.</returns>
         public bool ValidateFields() 
         {
 
@@ -125,6 +141,10 @@
             return formIsValid;
         }
 
+        /// <summary>
+        /// Gets the dog data in the form.
+        /// </summary>
+        /// <returns>Objet Dog to store in DB</returns>
         private Dog GetDogData()
         {
             return new Dog()
@@ -136,8 +156,6 @@
                 ClientId = clientId,
                 isActive = true
             };
-
-            return null;
         }
         #endregion
     }

@@ -15,6 +15,10 @@
             _breedRepository = context;
         }
 
+        /// <summary>
+        /// Gets all breeds.
+        /// </summary>
+        /// <returns>List of breeds</returns>
         public List<Breed> GetAllBreeds()
         {
             try

@@ -12,6 +12,6 @@
 
         public bool isActive { get; set; }
 
-        public required ICollection<Dog> Dogs { get; set; }
+        public ICollection<Dog> Dogs { get; set; }
     }
 }

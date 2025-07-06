@@ -4,7 +4,6 @@
     using ECI.DataContracts.IRepository;
     using ECI.Entities.DTO;
     using ECI.Entities.Entities;
-    using System.Threading.Tasks;
 
     public class LoginService : ILoginService
     {
@@ -15,6 +14,11 @@
             _loginRepository = loginRepository;
         }
 
+        /// <summary>
+        /// Validates the user.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <returns>User authenticated</returns>
         public User ValidateUser(LoginDTO login)
         {
             try

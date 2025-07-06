@@ -58,7 +58,11 @@ namespace ECI.DogWalking
         }
         #endregion
 
-        #region "Methods"
+        #region "Methods"        
+        /// <summary>
+        /// Validates the fields.
+        /// </summary>
+        /// <returns>True= all info in the form is OK.</returns>
         private bool ValidateFields()
         {
             bool formIsValid = true;

@@ -12,8 +12,17 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\2. ECI.Business\ECI.BusinessContracts\ECI.BusinessContracts.csproj" />
+    <ProjectReference Include="..\..\2. ECI.Business\ECI.Business\ECI.BusinessServices.csproj" />
+    <ProjectReference Include="..\..\3. ECI.Data\ECI.DataContracts\ECI.DataContracts.csproj" />
+    <ProjectReference Include="..\..\4. ECI.Entities\ECI.Common.Core\ECI.Common.Core.csproj" />
+    <ProjectReference Include="..\..\4. ECI.Entities\ECI.Entities\ECI.Entities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -15,6 +15,11 @@
             _dogRepository = dogRepository;
         }
 
+        /// <summary>
+        /// Gets all dogs by client identifier.
+        /// </summary>
+        /// <param name="clientId">The client identifier.</param>
+        /// <returns>List of client's dogs</returns>
         public List<Dog> GetAllDogsByClientId(long clientId)
         {
             try
@@ -28,6 +33,11 @@
             }
         }
 
+        /// <summary>
+        /// Gets the dog.
+        /// </summary>
+        /// <param name="dogId">The dog identifier.</param>
+        /// <returns>Dog found</returns>
         public Dog GetDog(long dogId)
         {
             try
@@ -41,6 +51,11 @@
             }
         }
 
+        /// <summary>
+        /// Saves the dog.
+        /// </summary>
+        /// <param name="dog">The dog.</param>
+        /// <returns>True = dog saved ok</returns>
         public bool SaveDog(Dog dog)
         {
             try

@@ -107,6 +107,7 @@
             // 
             // dgWalks
             // 
+            dgWalks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgWalks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgWalks.Location = new Point(14, 118);
             dgWalks.Name = "dgWalks";
@@ -237,12 +238,14 @@
             // 
             // btnDelete
             // 
+            btnDelete.Enabled = false;
             btnDelete.Location = new Point(170, 395);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 17;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnAdd
             // 
@@ -267,6 +270,7 @@
             Controls.Add(panel1);
             Name = "WalksForm";
             Text = "WalksForm";
+            Activated += WalksForm_Load;
             Load += WalksForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

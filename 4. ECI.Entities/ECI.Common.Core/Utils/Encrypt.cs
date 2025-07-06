@@ -5,6 +5,11 @@
 
     public static class Encrypt
     {
+        /// <summary>
+        /// Encrypts to m d5.
+        /// </summary>
+        /// <param name="texto">The texto.</param>
+        /// <returns>Encrypted string</returns>
         public static string EncryptToMD5(string texto)
         {
             using (MD5 md5 = MD5.Create())
