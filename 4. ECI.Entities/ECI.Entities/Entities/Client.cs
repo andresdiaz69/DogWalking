@@ -13,8 +13,7 @@
         [MaxLength(30)]
         public required string LastName { get; set; }
 
-        [MaxLength(15)]
-        public required string PhoneNumber { get; set; }
+        public required int PhoneNumber { get; set; }
 
         public bool isActive { get; set; }
 

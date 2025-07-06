@@ -7,5 +7,11 @@
             try { return new System.Net.Mail.MailAddress(email).Address == email; }
             catch { return false; }
         }
+
+        public static bool isNumber(string text) 
+        {
+            try { return int.TryParse(text , out int valor); }
+            catch { return false; }
+        }
     }
 }

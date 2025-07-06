@@ -117,28 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MsgClientLastNameEmpty" xml:space="preserve">
-    <value>Last name is required.</value>
+  <data name="MsgClientSaved" xml:space="preserve">
+    <value>Client saved Ok.</value>
   </data>
-  <data name="MsgClientNameEmpty" xml:space="preserve">
-    <value>Name is required.</value>
-  </data>
-  <data name="MsgLoginEmailEmpty" xml:space="preserve">
-    <value>Email is required.</value>
-  </data>
-  <data name="MsgLoginEmailNotValid" xml:space="preserve">
-    <value>Email has an incorrect format.</value>
-  </data>
-  <data name="MsgLoginPasswordEmpty" xml:space="preserve">
-    <value>Password is required.</value>
-  </data>
-  <data name="MsgLoginUserNotValid" xml:space="preserve">
-    <value>User or password incorrect, please try again.</value>
-  </data>
-  <data name="MsgClientPhoneEmpty" xml:space="preserve">
-    <value>Phone is required.</value>
-  </data>
-  <data name="MsgClientPhoneNotNumber" xml:space="preserve">
-    <value>Phone is not a number.</value>
+  <data name="MsgGeneralError" xml:space="preserve">
+    <value>An error has occurred, please try again.</value>
   </data>
 </root>

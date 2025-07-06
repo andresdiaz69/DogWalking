@@ -5,6 +5,6 @@
 
     public interface ILoginService
     {
-        Task<User> ValidateUser(LoginDTO login);
+        User ValidateUser(LoginDTO login);
     }
 }

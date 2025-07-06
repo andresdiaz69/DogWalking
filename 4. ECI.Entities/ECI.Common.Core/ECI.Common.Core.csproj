@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Update="MessagesApp\MsgGeneral.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MsgGeneral.resx</DependentUpon>
+    </Compile>
     <Compile Update="MessagesApp\MsgValidation.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -15,8 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="MessagesApp\MsgGeneral.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MsgGeneral.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="MessagesApp\MsgValidation.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MsgValidation.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

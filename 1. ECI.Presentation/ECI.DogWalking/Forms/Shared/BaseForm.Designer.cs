@@ -29,61 +29,72 @@
         private void InitializeComponent()
         {
             pnlMenu = new Panel();
-            linkLogout = new LinkLabel();
-            lblUser = new Label();
             menuStrip1 = new MenuStrip();
             usersToolStripMenuItem = new ToolStripMenuItem();
+            clientsToolStripMenuItem = new ToolStripMenuItem();
+            linkLogout = new LinkLabel();
+            lblUser = new Label();
             pnlMenu.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // pnlMenu
             // 
-            pnlMenu.Controls.Add(linkLogout);
-            pnlMenu.Controls.Add(lblUser);
             pnlMenu.Controls.Add(menuStrip1);
             pnlMenu.Location = new Point(0, 1);
             pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(720, 53);
+            pnlMenu.Size = new Size(895, 23);
             pnlMenu.TabIndex = 1;
-            // 
-            // linkLogout
-            // 
-            linkLogout.AutoSize = true;
-            linkLogout.Location = new Point(652, 26);
-            linkLogout.Name = "linkLogout";
-            linkLogout.Size = new Size(45, 15);
-            linkLogout.TabIndex = 1;
-            linkLogout.TabStop = true;
-            linkLogout.Text = "Logout";
-            // 
-            // lblUser
-            // 
-            lblUser.AutoSize = true;
-            lblUser.Location = new Point(566, 26);
-            lblUser.Name = "lblUser";
-            lblUser.Size = new Size(38, 15);
-            lblUser.TabIndex = 0;
-            lblUser.Text = "label1";
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { usersToolStripMenuItem });
+            menuStrip1.GripStyle = ToolStripGripStyle.Visible;
+            menuStrip1.Items.AddRange(new ToolStripItem[] { usersToolStripMenuItem, clientsToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(720, 24);
+            menuStrip1.Size = new Size(895, 24);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
             // usersToolStripMenuItem
             // 
             usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            usersToolStripMenuItem.Size = new Size(47, 20);
-            usersToolStripMenuItem.Text = "Users";
+            usersToolStripMenuItem.Size = new Size(50, 20);
+            usersToolStripMenuItem.Text = "Walks";
+            usersToolStripMenuItem.Click += usersToolStripMenuItem_Click;
+            // 
+            // clientsToolStripMenuItem
+            // 
+            clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
+            clientsToolStripMenuItem.Size = new Size(55, 20);
+            clientsToolStripMenuItem.Text = "Clients";
+            clientsToolStripMenuItem.Click += clientsToolStripMenuItem_Click;
+            // 
+            // linkLogout
+            // 
+            linkLogout.AutoSize = true;
+            linkLogout.Location = new Point(838, 5);
+            linkLogout.Name = "linkLogout";
+            linkLogout.Size = new Size(45, 15);
+            linkLogout.TabIndex = 1;
+            linkLogout.TabStop = true;
+            linkLogout.Text = "Logout";
+            linkLogout.LinkClicked += linkLogout_LinkClicked;
+            // 
+            // lblUser
+            // 
+            lblUser.AutoSize = true;
+            lblUser.Location = new Point(614, 5);
+            lblUser.Name = "lblUser";
+            lblUser.Size = new Size(61, 15);
+            lblUser.TabIndex = 0;
+            lblUser.Text = "Hello User";
             // 
             // BaseForm
             // 
-            ClientSize = new Size(720, 480);
+            ClientSize = new Size(886, 480);
+            Controls.Add(lblUser);
+            Controls.Add(linkLogout);
             Controls.Add(pnlMenu);
             MainMenuStrip = menuStrip1;
             Name = "BaseForm";
@@ -94,6 +105,7 @@
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -102,5 +114,6 @@
         private LinkLabel linkLogout;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem usersToolStripMenuItem;
+        private ToolStripMenuItem clientsToolStripMenuItem;
     }
 }

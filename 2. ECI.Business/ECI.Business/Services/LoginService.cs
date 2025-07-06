@@ -4,7 +4,6 @@
     using ECI.DataContracts.IRepository;
     using ECI.Entities.DTO;
     using ECI.Entities.Entities;
-    using System;
     using System.Threading.Tasks;
 
     public class LoginService : ILoginService
@@ -13,12 +12,20 @@
 
         public LoginService(ILoginRepository loginRepository)
         {
-            this._loginRepository = loginRepository;
+            _loginRepository = loginRepository;
         }
 
-        public async Task<User> ValidateUser(LoginDTO login)
+        public User ValidateUser(LoginDTO login)
         {
-            return await _loginRepository.ValidateUser(login);
+            try
+            {
+                return _loginRepository.ValidateUser(login);
+            }
+            catch (Exception ex)
+            {
+                // Log ex
+                throw;
+            }
         }
     }
 }

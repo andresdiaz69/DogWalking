@@ -3,40 +3,56 @@ namespace ECI.DogWalking
     using ECI.BusinessContracts.IServices;
     using ECI.Common.Core.MessagesApp;
     using ECI.Common.Core.Utils;
+    using ECI.DogWalking.Forms.Admin;
     using ECI.DogWalking.Forms.Shared;
-    using ECI.Entities;
     using ECI.Entities.DTO;
+    using Microsoft.Extensions.DependencyInjection;
 
     public partial class LoginForm : Form
     {
+        private readonly IServiceProvider _serviceProvider;
         private readonly ILoginService _loginService;
 
-        public LoginForm(ILoginService loginService)
+        public LoginForm(IServiceProvider serviceProvider, 
+                         ILoginService loginService)
         {
             InitializeComponent();
-            this._loginService = loginService;
+            _loginService = loginService;
+            _serviceProvider = serviceProvider;
+
+            // temp
+            txtEmail.Text = "admin@eci.com";
+            txtPassword.Text = "admin";
         }
 
         #region "Events"       
-        private async void btnLogin_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             if (ValidateFields())
             {
-                var validUser = await _loginService.ValidateUser(
-                    new LoginDTO()
-                    {
-                        Email = txtEmail.Text,
-                        Password = Encrypt.EncryptToMD5(txtPassword.Text)
-                    });
-
-                if (validUser is not null)
+                try
                 {
-                    var baseForm = new BaseForm();
-                    baseForm.Show();
-                    this.Hide();
+                    var validUser = _loginService.ValidateUser(
+                        new LoginDTO()
+                        {
+                            Email = txtEmail.Text,
+                            Password = Encrypt.EncryptToMD5(txtPassword.Text)
+                        });
+
+                    if (validUser is not null)
+                    {
+                        var mainForm = _serviceProvider.GetRequiredService<ClientsForm>();
+                        mainForm.SetUserName($"{validUser.Name} {validUser.LastName}");
+                        mainForm.Show();
+                        Hide();
+                    }
+                    else
+                        MessageBox.Show(MsgValidation.MsgLoginUserNotValid, "Error");
                 }
-                else
-                    MessageBox.Show(MsgValidation.MsgLoginUserNotValid, "Error");
+                catch (Exception)
+                {
+                    MessageBox.Show(MsgGeneral.MsgGeneralError);
+                }
             }
         }
         #endregion

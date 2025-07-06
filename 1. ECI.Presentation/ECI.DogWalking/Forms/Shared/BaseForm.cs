@@ -1,25 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace ECI.DogWalking.Forms.Shared
+﻿namespace ECI.DogWalking.Forms.Shared
 {
-    public partial class BaseForm: Form
+    using ECI.DogWalking.Forms.Admin;
+    using ECI.DogWalking.Forms.Shared.Menu;
+    using ECI.DogWalking.Forms.Walks;
+    using Microsoft.Extensions.DependencyInjection;
+    using System;
+    using System.ComponentModel;
+    using System.Windows.Forms;
+
+    public partial class BaseForm : Form
     {
-        public BaseForm()
+        private readonly IFormNavigator _formNavigator;
+        
+        public BaseForm(IFormNavigator _formNavigator)
         {
             InitializeComponent();
+            _formNavigator = _formNavigator;
         }
 
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        protected BaseForm()
         {
-            Application.Exit(); // o redirigir al LoginForm
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+            {
+                InitializeComponent();
+            }
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _formNavigator.OpenClientsForm();
+        }
+
+        private void linkLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            
+        }
+
+        public void SetUserName(string userName)
+        {
+            lblUser.Text = $"Hello {userName}";
         }
     }
 }

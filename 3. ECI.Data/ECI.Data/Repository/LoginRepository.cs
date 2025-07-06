@@ -12,14 +12,15 @@
 
         public LoginRepository(AppDbContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
-        public async Task<User> ValidateUser(LoginDTO login)
+        public User ValidateUser(LoginDTO login)
         {
-            var userValid = await this._context.Users.Where(
+            var userValid = _context.Users.Where(
                 u => u.Email == login.Email && u.Password == login.Password)
-                .FirstOrDefaultAsync();
+                .AsNoTracking()
+                .FirstOrDefault();
 
             return userValid;
         }

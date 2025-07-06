@@ -22,14 +22,14 @@ namespace ECI.Common.Core.MessagesApp {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MsgValidation {
+    public class MsgGeneral {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MsgValidation() {
+        internal MsgGeneral() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ECI.Common.Core.MessagesApp {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ECI.Common.Core.MessagesApp.MsgValidation", typeof(MsgValidation).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ECI.Common.Core.MessagesApp.MsgGeneral", typeof(MsgGeneral).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,74 +61,20 @@ namespace ECI.Common.Core.MessagesApp {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last name is required..
+        ///   Looks up a localized string similar to Client saved Ok..
         /// </summary>
-        public static string MsgClientLastNameEmpty {
+        public static string MsgClientSaved {
             get {
-                return ResourceManager.GetString("MsgClientLastNameEmpty", resourceCulture);
+                return ResourceManager.GetString("MsgClientSaved", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name is required..
+        ///   Looks up a localized string similar to An error has occurred, please try again..
         /// </summary>
-        public static string MsgClientNameEmpty {
+        public static string MsgGeneralError {
             get {
-                return ResourceManager.GetString("MsgClientNameEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Phone is required..
-        /// </summary>
-        public static string MsgClientPhoneEmpty {
-            get {
-                return ResourceManager.GetString("MsgClientPhoneEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Phone is not a number..
-        /// </summary>
-        public static string MsgClientPhoneNotNumber {
-            get {
-                return ResourceManager.GetString("MsgClientPhoneNotNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Email is required..
-        /// </summary>
-        public static string MsgLoginEmailEmpty {
-            get {
-                return ResourceManager.GetString("MsgLoginEmailEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Email has an incorrect format..
-        /// </summary>
-        public static string MsgLoginEmailNotValid {
-            get {
-                return ResourceManager.GetString("MsgLoginEmailNotValid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password is required..
-        /// </summary>
-        public static string MsgLoginPasswordEmpty {
-            get {
-                return ResourceManager.GetString("MsgLoginPasswordEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to User or password incorrect, please try again..
-        /// </summary>
-        public static string MsgLoginUserNotValid {
-            get {
-                return ResourceManager.GetString("MsgLoginUserNotValid", resourceCulture);
+                return ResourceManager.GetString("MsgGeneralError", resourceCulture);
             }
         }
     }

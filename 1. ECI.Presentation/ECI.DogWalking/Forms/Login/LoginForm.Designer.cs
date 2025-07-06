@@ -75,7 +75,9 @@
             Controls.Add(btnLogin);
             Controls.Add(txtPassword);
             Controls.Add(txtEmail);
+            MaximizeBox = false;
             Name = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)errorsLogin).EndInit();
             ResumeLayout(false);

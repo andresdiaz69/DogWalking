@@ -1,6 +1,8 @@
 ﻿namespace ECI.DogWalking.Forms.Walks
 {
     using ECI.DogWalking.Forms.Shared;
+    using ECI.DogWalking.Forms.Shared.Menu;
+    using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -13,7 +15,8 @@
 
     public partial class WalksForm: BaseForm
     {
-        public WalksForm()
+        public WalksForm(IFormNavigator navigator)
+                           : base(navigator)
         {
             InitializeComponent();
         }

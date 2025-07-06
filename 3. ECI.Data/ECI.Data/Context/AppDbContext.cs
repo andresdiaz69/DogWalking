@@ -38,6 +38,5 @@
         //        optionsBuilder.UseSqlServer("Server=MIPCHP;Database=ECI_DogWalks;Trusted_Connection=True;TrustServerCertificate=True;");
         //    }
         //}
-
     }
 }
