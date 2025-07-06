@@ -141,4 +141,16 @@
   <data name="MsgClientPhoneNotNumber" xml:space="preserve">
     <value>Phone is not a number.</value>
   </data>
+  <data name="MsgDogNameEmpty" xml:space="preserve">
+    <value>Dog name is required.</value>
+  </data>
+  <data name="MsgBreedNotSelected" xml:space="preserve">
+    <value>Breed is required.</value>
+  </data>
+  <data name="MsgDogNotSelected" xml:space="preserve">
+    <value>Dog is required.</value>
+  </data>
+  <data name="MsgClientNotSelected" xml:space="preserve">
+    <value>Client is required.</value>
+  </data>
 </root>

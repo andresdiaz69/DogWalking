@@ -61,7 +61,7 @@
             panel1.Controls.Add(txtSearch);
             panel1.Controls.Add(cbFilters);
             panel1.Controls.Add(dgClients);
-            panel1.Location = new Point(12, 30);
+            panel1.Location = new Point(12, 31);
             panel1.Name = "panel1";
             panel1.Size = new Size(413, 438);
             panel1.TabIndex = 2;

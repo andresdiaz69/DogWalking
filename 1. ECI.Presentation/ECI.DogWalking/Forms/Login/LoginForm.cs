@@ -5,6 +5,7 @@ namespace ECI.DogWalking
     using ECI.Common.Core.Utils;
     using ECI.DogWalking.Forms.Admin;
     using ECI.DogWalking.Forms.Shared;
+    using ECI.DogWalking.Forms.Walks;
     using ECI.Entities.DTO;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -41,8 +42,8 @@ namespace ECI.DogWalking
 
                     if (validUser is not null)
                     {
-                        var mainForm = _serviceProvider.GetRequiredService<ClientsForm>();
-                        mainForm.SetUserName($"{validUser.Name} {validUser.LastName}");
+                        var mainForm = _serviceProvider.GetRequiredService<WalksForm>();
+                        //mainForm.SetUserName($"{validUser.Name} {validUser.LastName}");
                         mainForm.Show();
                         Hide();
                     }

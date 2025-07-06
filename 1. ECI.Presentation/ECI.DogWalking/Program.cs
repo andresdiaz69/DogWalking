@@ -8,6 +8,7 @@ namespace ECI.DogWalking
     using ECI.DataRepository.Repository;
     using ECI.DogWalking.Forms.Admin;
     using ECI.DogWalking.Forms.Shared.Menu;
+    using ECI.DogWalking.Forms.Walks;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
@@ -48,6 +49,7 @@ namespace ECI.DogWalking
                             services.AddScoped<LoginForm>();
                             services.AddScoped<ClientsForm>();
                             services.AddScoped<DogsForm>();
+                            services.AddScoped<WalksForm>();
 
                             // Menus
                             services.AddSingleton<IFormNavigator, FormNavigator>();

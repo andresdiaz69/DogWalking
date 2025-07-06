@@ -70,11 +70,29 @@ namespace ECI.Common.Core.MessagesApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dog saved Ok..
+        /// </summary>
+        public static string MsgDogSaved {
+            get {
+                return ResourceManager.GetString("MsgDogSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error has occurred, please try again..
         /// </summary>
         public static string MsgGeneralError {
             get {
                 return ResourceManager.GetString("MsgGeneralError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Walk saved OK..
+        /// </summary>
+        public static string MsgWalkSaved {
+            get {
+                return ResourceManager.GetString("MsgWalkSaved", resourceCulture);
             }
         }
     }

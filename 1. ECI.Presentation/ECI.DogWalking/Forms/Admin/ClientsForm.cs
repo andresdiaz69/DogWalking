@@ -6,7 +6,6 @@
     using ECI.DogWalking.Forms.Shared.Menu;
     using ECI.Entities.Entities;
     using System;
-    using System.Threading.Tasks;
     using System.Windows.Forms;
 
     public partial class ClientsForm : BaseForm
@@ -38,10 +37,8 @@
         {
             if (e.RowIndex >= 0)
             {
-                dgClients.Enabled = false;
                 clientId = Convert.ToInt64(dgClients.Rows[dgClients.CurrentRow.Index].Cells[0].Value);
                 SetClientInfo(clientId);
-                dgClients.Enabled = true;
             }
         }
 
@@ -101,7 +98,7 @@
         {
             try
             {
-                var listClients = _clientService.GetAllCLients();
+                var listClients = _clientService.GetAllCLients(false);
 
                 if (cbFilters.SelectedIndex > 0)
                 {
@@ -141,6 +138,7 @@
             clientId = 0;
             btnAddDogs.Enabled = false;
             btnAdd.Text = "Add new";
+            errorsClient.Clear();
         }
 
         private void SetClientInfo(long clientId)

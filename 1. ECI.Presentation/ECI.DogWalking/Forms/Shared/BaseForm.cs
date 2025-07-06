@@ -7,15 +7,16 @@
     using System;
     using System.ComponentModel;
     using System.Windows.Forms;
+    using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
     public partial class BaseForm : Form
     {
-        private readonly IFormNavigator _formNavigator;
-        
-        public BaseForm(IFormNavigator _formNavigator)
+        private readonly IFormNavigator _formNavigator;      
+
+        public BaseForm(IFormNavigator formNavigator)
         {
             InitializeComponent();
-            _formNavigator = _formNavigator;
+            _formNavigator = formNavigator;
         }
 
         protected BaseForm()
@@ -28,22 +29,20 @@
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            this.Hide();
+            _formNavigator.OpenWalksForm();
         }
 
         private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.Hide();
             _formNavigator.OpenClientsForm();
         }
 
         private void linkLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            
-        }
-
-        public void SetUserName(string userName)
-        {
-            lblUser.Text = $"Hello {userName}";
+            this.Hide();
+            _formNavigator.LogOut();
         }
     }
 }

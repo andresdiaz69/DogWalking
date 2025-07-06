@@ -120,7 +120,13 @@
   <data name="MsgClientSaved" xml:space="preserve">
     <value>Client saved Ok.</value>
   </data>
+  <data name="MsgDogSaved" xml:space="preserve">
+    <value>Dog saved Ok.</value>
+  </data>
   <data name="MsgGeneralError" xml:space="preserve">
     <value>An error has occurred, please try again.</value>
+  </data>
+  <data name="MsgWalkSaved" xml:space="preserve">
+    <value>Walk saved OK.</value>
   </data>
 </root>

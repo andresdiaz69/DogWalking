@@ -19,7 +19,8 @@
 
         public bool DeleteWalk(Walk walk)
         {
-            _context.Walks.Remove(walk);
+            _context.Attach(walk);
+            _context.Entry(walk).State = EntityState.Deleted;
             _context.SaveChanges();
             return true;
         }
@@ -28,14 +29,18 @@
         {
             return _context.Walks
                 .AsNoTracking()
+                .Include(d => d.Dog)
+                .ThenInclude(d => d.Client)
                 .ToList();
         }
 
         public Walk GetWalk(long walkId)
         {
             return _context.Walks
-                .Where(w => w.Id == walkId)
-                .FirstOrDefault();
+                .AsNoTracking()
+                .Include(w => w.Dog)
+                .ThenInclude(d => d.Client)
+                .FirstOrDefault(w => w.Id == walkId);
         }
 
         public bool SaveWalk(Walk walk)
@@ -47,7 +52,8 @@
 
         public bool UpdateWalk(Walk walk)
         {
-            _context.Walks.Update(walk);
+            _context.Attach(walk);
+            _context.Entry(walk).State = EntityState.Modified;
             _context.SaveChanges();
             return true;
         }

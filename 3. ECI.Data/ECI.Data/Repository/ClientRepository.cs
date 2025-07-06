@@ -16,10 +16,10 @@
             _context = context;
         }
     
-        public List<Client> GetAllCLients()
+        public List<Client> GetAllCLients(bool onlyActiveClients)
         {
             return _context.Clients
-                //.Where(c => c.isActive)
+                .Where(c => (!onlyActiveClients || (onlyActiveClients && c.isActive)))
                 .AsNoTracking()
                 .ToList();
         }

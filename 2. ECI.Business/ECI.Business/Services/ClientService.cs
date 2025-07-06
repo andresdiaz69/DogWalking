@@ -15,11 +15,11 @@
             _clientRepository = clientRepository;
         }
 
-        public List<Client> GetAllCLients()
+        public List<Client> GetAllCLients(bool onlyActiveClients)
         {
             try
             {
-                return _clientRepository.GetAllCLients();
+                return _clientRepository.GetAllCLients(onlyActiveClients);
             }
             catch (Exception ex)
             {

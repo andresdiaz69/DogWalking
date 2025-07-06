@@ -61,6 +61,15 @@ namespace ECI.Common.Core.MessagesApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Breed is required..
+        /// </summary>
+        public static string MsgBreedNotSelected {
+            get {
+                return ResourceManager.GetString("MsgBreedNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last name is required..
         /// </summary>
         public static string MsgClientLastNameEmpty {
@@ -79,6 +88,15 @@ namespace ECI.Common.Core.MessagesApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Client is required..
+        /// </summary>
+        public static string MsgClientNotSelected {
+            get {
+                return ResourceManager.GetString("MsgClientNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone is required..
         /// </summary>
         public static string MsgClientPhoneEmpty {
@@ -93,6 +111,24 @@ namespace ECI.Common.Core.MessagesApp {
         public static string MsgClientPhoneNotNumber {
             get {
                 return ResourceManager.GetString("MsgClientPhoneNotNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dog name is required..
+        /// </summary>
+        public static string MsgDogNameEmpty {
+            get {
+                return ResourceManager.GetString("MsgDogNameEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dog is required..
+        /// </summary>
+        public static string MsgDogNotSelected {
+            get {
+                return ResourceManager.GetString("MsgDogNotSelected", resourceCulture);
             }
         }
         

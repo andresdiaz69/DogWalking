@@ -40,7 +40,7 @@ namespace ECI.DataRepository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Breeds");
+                    b.ToTable("Breeds", (string)null);
                 });
 
             modelBuilder.Entity("ECI.Entities.Entities.Client", b =>
@@ -69,7 +69,7 @@ namespace ECI.DataRepository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("ECI.Entities.Entities.Dog", b =>
@@ -103,7 +103,7 @@ namespace ECI.DataRepository.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("Dogs");
+                    b.ToTable("Dogs", (string)null);
                 });
 
             modelBuilder.Entity("ECI.Entities.Entities.User", b =>
@@ -139,7 +139,7 @@ namespace ECI.DataRepository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
                     b.HasData(
                         new
@@ -174,7 +174,7 @@ namespace ECI.DataRepository.Migrations
 
                     b.HasIndex("DogId");
 
-                    b.ToTable("Walks");
+                    b.ToTable("Walks", (string)null);
                 });
 
             modelBuilder.Entity("ECI.Entities.Entities.Dog", b =>

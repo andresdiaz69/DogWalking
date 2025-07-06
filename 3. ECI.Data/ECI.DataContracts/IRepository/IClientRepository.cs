@@ -7,7 +7,7 @@
     {
         bool SaveClient(Client client);
 
-        List<Client> GetAllCLients();
+        List<Client> GetAllCLients(bool onlyActiveClients);
 
         Client GetClient(long clientId);
 

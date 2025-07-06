@@ -33,7 +33,6 @@
             usersToolStripMenuItem = new ToolStripMenuItem();
             clientsToolStripMenuItem = new ToolStripMenuItem();
             linkLogout = new LinkLabel();
-            lblUser = new Label();
             pnlMenu.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -81,19 +80,9 @@
             linkLogout.Text = "Logout";
             linkLogout.LinkClicked += linkLogout_LinkClicked;
             // 
-            // lblUser
-            // 
-            lblUser.AutoSize = true;
-            lblUser.Location = new Point(614, 5);
-            lblUser.Name = "lblUser";
-            lblUser.Size = new Size(61, 15);
-            lblUser.TabIndex = 0;
-            lblUser.Text = "Hello User";
-            // 
             // BaseForm
             // 
             ClientSize = new Size(886, 480);
-            Controls.Add(lblUser);
             Controls.Add(linkLogout);
             Controls.Add(pnlMenu);
             MainMenuStrip = menuStrip1;
@@ -110,7 +99,6 @@
 
         #endregion
         private Panel pnlMenu;
-        private Label lblUser;
         private LinkLabel linkLogout;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem usersToolStripMenuItem;

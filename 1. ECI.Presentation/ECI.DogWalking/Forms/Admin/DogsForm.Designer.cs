@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             dgDogs = new DataGridView();
             panel2 = new Panel();
+            nudAge = new NumericUpDown();
             btnClear = new Button();
             btnAddDog = new Button();
             cbBreed = new ComboBox();
@@ -39,11 +41,12 @@
             lblAge = new Label();
             lblName = new Label();
             label1 = new Label();
-            nudAge = new NumericUpDown();
+            errorsDogs = new ErrorProvider(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgDogs).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudAge).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorsDogs).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -78,6 +81,14 @@
             panel2.Size = new Size(303, 282);
             panel2.TabIndex = 1;
             // 
+            // nudAge
+            // 
+            nudAge.Location = new Point(87, 156);
+            nudAge.Maximum = new decimal(new int[] { 50, 0, 0, 0 });
+            nudAge.Name = "nudAge";
+            nudAge.Size = new Size(120, 23);
+            nudAge.TabIndex = 6;
+            // 
             // btnClear
             // 
             btnClear.Location = new Point(214, 246);
@@ -86,6 +97,7 @@
             btnClear.TabIndex = 5;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // btnAddDog
             // 
@@ -95,6 +107,7 @@
             btnAddDog.TabIndex = 5;
             btnAddDog.Text = "Add new";
             btnAddDog.UseVisualStyleBackColor = true;
+            btnAddDog.Click += btnAddDog_Click;
             // 
             // cbBreed
             // 
@@ -148,13 +161,9 @@
             label1.TabIndex = 0;
             label1.Text = "Dogs Administration";
             // 
-            // nudAge
+            // errorsDogs
             // 
-            nudAge.Location = new Point(87, 156);
-            nudAge.Maximum = new decimal(new int[] { 50, 0, 0, 0 });
-            nudAge.Name = "nudAge";
-            nudAge.Size = new Size(120, 23);
-            nudAge.TabIndex = 6;
+            errorsDogs.ContainerControl = this;
             // 
             // DogsForm
             // 
@@ -172,6 +181,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudAge).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorsDogs).EndInit();
             ResumeLayout(false);
         }
 
@@ -189,5 +199,6 @@
         private Button btnAddDog;
         private Button btnClear;
         private NumericUpDown nudAge;
+        private ErrorProvider errorsDogs;
     }
 }

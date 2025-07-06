@@ -1,5 +1,6 @@
 ﻿namespace ECI.DogWalking.Forms.Admin
 {
+    using ECI.BusinessContracts.IServices;
     using ECI.Common.Core.MessagesApp;
     using ECI.DataContracts.IRepository;
     using ECI.Entities.Entities;
@@ -8,16 +9,17 @@
 
     public partial class DogsForm : Form
     {
-        private readonly IDogRepostory _dogRepostory;
-        private readonly IBreedRepository _breedRepository;
+        public long clientId { get; set; }
+        private readonly IDogService _dogService;
+        private readonly IBreedService _breedService;
 
-        public DogsForm(//IFormNavigator navigator,
-                        IBreedRepository breedRepository,
-                        IDogRepostory dogRepostory)
+        public DogsForm(IDogService dogService,
+                        IBreedService breedService)
         {
-            _breedRepository = breedRepository;
-            _dogRepostory = dogRepostory;
-            InitializeComponent();
+            _breedService = breedService;
+            _dogService = dogService;
+
+            InitializeComponent();            
         }
 
         #region "Events"
@@ -26,6 +28,32 @@
             GetBreeds();
             ClearDogsForm();
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearDogsForm();
+        }
+
+        private void btnAddDog_Click(object sender, EventArgs e)
+        {
+            if (ValidateFields())
+            {
+                try
+                {
+                    var dog = GetDogData();
+
+                    _dogService.SaveDog(dog);
+
+                    ClearDogsForm();
+                    GetDogsByClient(clientId);
+                    MessageBox.Show(MsgGeneral.MsgDogSaved);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(MsgGeneral.MsgGeneralError);
+                }
+            }
+        }
         #endregion
 
         #region "Methods"
@@ -33,11 +61,16 @@
         {
             try
             {
-                var listDogs = _dogRepostory.GetAllDogsByClientId(clientId);
+                var listDogs = _dogService.GetAllDogsByClientId(clientId);
 
                 dgDogs.DataSource = listDogs;
+                dgDogs.Columns["Id"].Visible = false;
                 dgDogs.Columns["ClientId"].Visible = false;
-                dgDogs.Columns["BreedId"].Visible = false;                
+                dgDogs.Columns["BreedId"].Visible = false;
+                dgDogs.Columns["Client"].Visible = false;
+                dgDogs.Columns["Breed"].Visible = false;
+                dgDogs.Columns["Walks"].Visible = false;
+                dgDogs.Columns["isActive"].Visible = false;
 
             }
             catch (Exception ex)
@@ -50,7 +83,7 @@
         {
             try
             {
-                var breedList = _breedRepository.GetAllBreeds();
+                var breedList = _breedService.GetAllBreeds();
 
                 cbBreed.DataSource = breedList;
                 cbBreed.DisplayMember = "Name";
@@ -67,17 +100,42 @@
             txtName.Text = string.Empty;
             nudAge.Value = 0;
             cbBreed.SelectedIndex = -1;
+            errorsDogs.Clear();
+        }
+
+        public bool ValidateFields() 
+        {
+
+            bool formIsValid = true;
+            errorsDogs.Clear();
+
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                errorsDogs.SetError(txtName, MsgValidation.MsgDogNameEmpty);
+                formIsValid = false;
+            }
+
+            if (cbBreed.SelectedIndex == -1)
+            {
+                errorsDogs.SetError(cbBreed, MsgValidation.MsgBreedNotSelected);
+                formIsValid = false;
+            }
+
+
+            return formIsValid;
         }
 
         private Dog GetDogData()
         {
-            //return new Dog()
-            //{
-            //    Name = txtName.Text,
-            //    BreedId = int.Parse(cbBreed.SelectedItem.ToString()),
-            //    Age = (short)nudAge.Value,
-            //    Id =0                
-            //};
+            return new Dog()
+            {
+                Name = txtName.Text,
+                BreedId = int.Parse(cbBreed.SelectedValue.ToString()),
+                Age = (short)nudAge.Value,
+                Id = 0,
+                ClientId = clientId,
+                isActive = true
+            };
 
             return null;
         }

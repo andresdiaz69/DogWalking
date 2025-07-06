@@ -16,11 +16,11 @@
 
         public long ClientId { get; set; }
         
-        public required Client Client { get; set; }
+        public Client Client { get; set; }
 
         public int BreedId { get; set; }
 
-        public required Breed Breed { get; set; }
+        public Breed Breed { get; set; } = null!;
 
         public ICollection<Walk> Walks { get; set; }
     }

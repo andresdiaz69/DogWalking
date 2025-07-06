@@ -9,6 +9,7 @@
     public class DogService : IDogService
     {
         private readonly IDogRepostory _dogRepository;
+
         public DogService(IDogRepostory dogRepository) 
         {
             _dogRepository = dogRepository;

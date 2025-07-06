@@ -9,10 +9,15 @@
 
         public required TimeSpan Duration { get; set; }
 
-        public DateTime Date { get; set; }
+        public required DateTime Date { get; set; }
 
         public required long DogId { get; set; }
 
         public Dog Dog { get; set; }
+
+        public string DogName => Dog?.Name ?? "";
+
+        public string ClientName => Dog?.Client?.Name ?? "";
+
     }
 }
